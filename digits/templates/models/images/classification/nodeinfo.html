@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table class="table table-bordered table-striped ">
+    <tr>
+        <td>No.</td>
+        <td>IP</td>
+        <td>GPU </td>
+        <td>GPU Memory(GB)</td>
+        <td>Num of GPUs</td>
+        <td>CPU</td>
+        <td>Num of CPUs</td>
+        <td>Num of CPU Cores</td>
+        <td>CPU Clock Speed</td>
+        <td>CPU Memory(GB)</td>
+    </tr>
+
+    {%for i in range(l)%}
+        <tr>
+            <td>{{list[i*10]}}</td>
+            <td>{{list[i*10 + 1]}}</td>
+            <td>{{list[i*10 + 2]}}</td>
+            <td>{{list[i*10 + 3]}}  </td>
+            <td>{{list[i*10 + 4]}}  </td>
+            <td>{{list[i*10 + 5]}}  </td>
+            <td>{{list[i*10 + 6]}}  </td>
+            <td>{{list[i*10 + 7]}}  </td>
+            <td>{{list[i*10 + 8]}}  </td>
+            <td>{{list[i*10 + 9]}}  </td>
+        </tr>
+    {%endfor%}
+    <!--<tr>
+        <td>2</td>
+        <td>{{list[4]}}</td>
+        <td>{{list[5]}}</td>
+        <td>{{list[6]}}  </td>
+        <td>{{list[7]}}  </td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>{{list[8]}}</td>
+        <td>{{list[9]}}</td>
+        <td>{{list[10]}}  </td>
+        <td>{{list[11]}}  </td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>{{list[12]}}</td>
+        <td>{{list[13]}}</td>
+        <td>{{list[14]}}  </td>
+        <td>{{list[15]}}  </td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>{{list[16]}}</td>
+        <td>{{list[17]}}</td>
+        <td>{{list[18]}}  </td>
+        <td>{{list[19]}}  </td>
+    </tr>
+    <tr>
+        <td>{{list[20]}}</td>
+    </tr>-->
+</table>
+
+<b>Please choose Node</b><br />
+    {% for i in range(l) %}
+    {% if (i > 1 and (i+1)%5 == 1) %}
+            <div>
+            <br />
+            </div>
+        {%endif%}
+        <label><input name="hostlistcheckbox" id="hostcheckbox{{i}}" type="checkbox"  onclick="sethostlist()" value="{{list[i*10+1]}}" />{{list[i*10+1]}}&nbsp&nbsp&nbsp&nbsp&nbsp</label><!--<br />-->
+    {%endfor%}
+
+<script>
+    function sethostlist() {
+        var id_array=new Array();
+        $('input[name="hostlistcheckbox"]:checked').each(function(){
+            id_array.push($(this).val());
+        });
+        var idstr=id_array.join(',');
+
+        $("#hostlist").val(idstr);
+    }
+
+</script>
+
+</body>
+</html>

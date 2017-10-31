@@ -1,0 +1,16 @@
+Metadata-Version: 1.1
+Name: digits
+Version: 5.1.dev0
+Summary: NVIDIA's Deep Learning GPU Training System
+Home-page: https://developer.nvidia.com/digits
+Author: DIGITS Development Team
+Author-email: digits@nvidia.com
+License: BSD
+Description: UNKNOWN
+Keywords: nvidia digits
+Platform: UNKNOWN
+Classifier: Framework :: Flask
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 2 :: Only
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence

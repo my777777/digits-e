@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+        <meta charset="utf-8"><link rel="icon" href="https://static.jianshukeji.com/highcharts/images/favicon.ico">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdn.bootcss.com/echarts/3.6.2/echarts.common.js"></script>
+
+
+    </head>
+
+    <body>
+
+        <div id="container" style="min-width:400px;height:400px"></div>
+
+        <script>
+
+        option = {
+            title: {
+                text: 'cifar10 val'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data:[{{ xcategories }}]
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    dataZoom: {
+                        yAxisIndex: 'none'
+                    },
+                    dataView: {readOnly: false},
+                    magicType: {type: ['line', 'bar']},
+                    restore: {},
+                    saveAsImage: {}
+                }
+            },
+            xAxis:  {
+                type: 'category',
+                boundaryGap: false,
+                data: ['ÖÜÒ»','ÖÜ¶þ','ÖÜÈý','ÖÜËÄ','ÖÜÎå','ÖÜÁù','ÖÜÈÕ']
+            },
+            yAxis: {
+                type: 'value',
+                axisLabel: {
+                    formatter: '{value} '
+                }
+            },
+            series: [
+                {
+                    name:'×î¸ßÆøÎÂ',
+                    type:'line',
+                    data:[11, 11, 15, 13, 102, 13, 10],
+
+                },
+                {
+                    name:'×îµÍÆøÎÂ',
+                    type:'line',
+                    data:[1, -2, 2, 5, 3, 2, 0],
+
+                }
+            ]
+        };
+
+
+        </script>
+
+
+
+    <div>
+        <input id = "async" name = "async" value="{{async}}"/>
+        <br>
+        <input id = "gsync" name="gsync" value="{{gsync}}"/>
+        <br>
+        <input id = "sync" name ="sync" value="{{sync}}"/>
+        <br>
+        <input id = "xcategories" name="xcategories" value="{{xcategories}}"/>
+    </div>
+    </body>
+
+</html>
+
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+        <meta charset="utf-8"><link rel="icon" href="https://static.jianshukeji.com/highcharts/images/favicon.ico">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <style>
+
+
+
+        </style>
+        <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+        <script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+
+        <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
+
+        <script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+
+    </head>
+
+    <body>
+
+        <div id="container" style="min-width:400px;height:400px"></div>
+
+        <script>
+
+
+        var chart = new Highcharts.Chart('container', {
+            title: {
+                text: 'cifar10 val',
+                x: -20
+            },
+
+            xAxis: {
+                categories: [$("#xcategories").val()]
+            },
+            yAxis: {
+                title: {
+                    text: 'accuracy'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: '%'
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [
+                {
+                name: 'gsync',
+                data: [$("#gsync").val()]
+            }, {
+                name: 'async',
+                data: [$("#async").val()]
+            }, {
+                name: 'sync',
+                data: [$("#sync").val()]
+            }
+            ]
+        });
+
+
+        </script>
+
+
+
+    <div>
+        <input id = "async" name = "async" value="{{async}}"/>
+        <br>
+        <input id = "gsync" name="gsync" value="{{gsync}}"/>
+        <br>
+        <input id = "sync" name ="sync" value="{{sync}}"/>
+        <br>
+        <input id = "xcategories" name="xcategories" value="{{xcategories}}"/>
+    </div>
+    </body>
+
+</html>
+
+-->

@@ -1,0 +1,158 @@
+{# Copyright (c) 2016-2017, NVIDIA CORPORATION.  All rights reserved. #}
+<ul class="nav nav-tabs" id="stdnetRole">
+    {% for fw in frameworks %}
+        <li id="{{ fw.get_id() }}"><a href="#{{ fw.get_id() }}_standard" data-toggle="tab">{{ fw.get_name() }} </a></li>
+    {% endfor %}
+</ul>
+<div id="network-tab-standard-contents" class="tab-pane active">
+    <script>
+        $('#stdnetRole li').first().addClass("active");
+        if($('#stdnetRole li').first().children('a').text()!='Mxnet')
+        {
+            $('#digits_origin').show();
+            $('#mxnet_network').hide();
+        }
+
+
+        $('#stdnetRole li').on('click', function(e) {
+
+             $(this).addClass('active');
+             $(this).siblings().removeClass('active');
+             setFramework($(this).attr('id'));
+
+             if ($.trim($(this).children('a').text())==$.trim("Mxnet"))
+             {
+                 $('#selectcaffeversion').hide();
+                 $('#digits_origin').hide();
+                 $('#mxnet_network').show();
+             }else
+             {
+                 $('#digits_origin').show();
+                 $('#mxnet_network').hide();
+                 $('#selectcaffeversion').show();
+             }
+        });
+    </script>
+    <div id="digits_origin">
+        <table class="table">
+            <tr>
+                <th>Network</th>
+                <th>Details</th>
+                <th>Intended image size</th>
+                <th></th>
+            </tr>
+
+            {% for network in form.standard_networks %}
+            <tr>
+                <td>{{network}} {{network.label}}</td>
+                {% if network.data == 'lenet' %}
+                <td>
+                    <a href="http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf" target="_blank">Original paper</a>
+                    [1998]
+                </td>
+                <td>28x28 (gray)</td>
+                {% elif network.data == 'alexnet' %}
+                <td>
+                    <a href="http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional" target="_blank">Original paper</a>
+                    [2012]
+                </td>
+                <td>256x256</td>
+                  {% elif network.data == 'cifar10_quick' %}
+                <td>
+
+
+                </td>
+                <td>32x32</td>
+
+
+                {% elif network.data == 'vgg-16' %}
+                <td>
+                    <a href="http://arxiv.org/abs/1409.1556" target="_blank">Original paper</a>
+                    [2014]
+                </td>
+                <td>256x256</td>
+                {% elif network.data == 'googlenet' %}
+                <td>
+                    <a href="http://arxiv.org/abs/1409.4842" target="_blank">Original paper</a>
+                    [2014]
+                </td>
+                <td>256x256</td>
+                {% else %}
+                <td></td><td>?</td>
+                {% endif %}
+                <td><a class="btn btn-sm" onClick="customizeNetwork('{{network.data}}');">Customize</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div id="mxnet_network" style="display: none;">
+        <table class="table">
+            <tr>
+                <th>Network</th>
+                <th>Details</th>
+                <th>Intended image size</th>
+                <th></th>
+            </tr>
+           {% for network in form.standard_mxnet_networks %}
+            <tr>
+                <td>{{network}} {{network.label}}</td>
+                {% if network.data == '3conv' %}
+                <td>
+                </td>
+                <td>28x28</td>
+                {% elif network.data == 'inception_small' %}
+                <td>
+                     Original paper
+                </td>
+                <td>32x32 </td>
+                {% elif network.data == 'lenet' %}
+                <td>
+                    <a href="http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf" target="_blank">Original paper</a>
+                    [1998]
+                </td>
+                <td>28x28 (gray)</td>
+                {% elif network.data == 'alexnet' %}
+                <td>
+                    <a href="http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional" target="_blank">Original paper</a>
+                    [2012]
+                </td>
+                <td>256x256</td>
+                {% elif network.data == 'vgg' %}
+                <td>
+                    <a href="http://arxiv.org/abs/1409.1556" target="_blank">Original paper</a>
+                    [2014]
+                </td>
+                <td>256x256</td>
+                {% elif network.data == 'googlenet' %}
+                <td>
+                    <a href="http://arxiv.org/abs/1409.4842" target="_blank">Original paper</a>[2014]
+                </td>
+                <td>256x256</td>
+                {% elif network.data == 'mlp' %}
+                <td></td>
+                <td>28x28</td>
+                {% elif network.data == 'cross' %}
+                <td>
+                    <a href="http://arxiv.org/abs/1409.4842" target="_blank">Original paper</a>[2014]
+                </td>
+                <td>32x32</td>
+                {% elif network.data == 'inception-bn' %}
+                <td>
+
+                </td>
+                <td>256x256</td>
+                {% elif network.data == 'resnet' %}
+                <td></td>
+                <td>256x256</td>
+                {% else %}
+                <td></td><td>?</td>
+                {% endif %}
+                <td><a class="btn btn-sm" onClick="customizeNetwork('{{network.data}}');">Customize</a></td>
+
+
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+</div>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+        <meta charset="utf-8"><link rel="icon" href="https://static.jianshukeji.com/highcharts/images/favicon.ico">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <style>
+
+
+
+        </style>
+        <script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+
+        <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
+
+        <script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+
+    </head>
+
+    <body>
+
+        <div id="container" style="min-width:400px;height:400px"></div>
+
+        <script>
+
+
+        var chart = new Highcharts.Chart('container', {
+            title: {
+                text: ' {{job_names}}',
+                x: -20
+            },
+
+            xAxis: {
+                categories: ['+xcategories+']
+            },
+            yAxis: {
+                title: {
+                    text: 'accuracy'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: '%'
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+
+            series: [
+                {% for i in range(2): %}
+                {
+                name: 'gsync',
+                data: ['gsync+']
+            }, {
+                name: 'async',
+                data: ['+async+']
+            }, {
+                name: 'sync',
+                data: ['+sync+']
+            }
+            {%endfor%}
+            ]
+        });
+
+
+        </script>
+    {{job_names}}
+    {{job_value}}
+    {% for i in range(2):%}
+        {%print job_names[i]%}
+    {%endfor%}
+    </body>
+
+</html>
